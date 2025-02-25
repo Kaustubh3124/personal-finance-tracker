@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+    <button id="dark-mode-toggle">🌙 Toggle Dark Mode</button>
+
+    <h1>Personal Finance Tracker</h1>
+
+    <div class="container">
+        <!-- Balance Section -->
+        <div class="balance">
+            <h2>Balance: <span id="balance">₹0</span></h2>
+        </div>
+
+        <!-- Income & Expense Summary -->
+        <div class="summary">
+            <div class="income">
+                <h3>Income</h3>
+                <p id="income-amount">₹0</p>
+            </div>
+            <div class="expense">
+                <h3>Expenses</h3>
+                <p id="expense-amount">₹0</p>
+            </div>
+        </div>
+
+        <!-- Chart Section -->
+        <h3>Financial Overview</h3>
+        <canvas id="financeChart" width="400" height="400"></canvas>
+
+        <!-- Form to Add Transactions -->
+        <div class="add-transaction">
+            <h3>Add Transaction</h3>
+            <input type="text" id="description" placeholder="Description">
+            <input type="number" id="amount" placeholder="Amount">
+            <select id="type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <button onclick="addTransaction()">Add</button>
+        </div>
+
+        <!-- Transaction List -->
+        <select id="filter">
+            <option value="all">All Transactions</option>
+            <option value="income">Income</option>
+            <option value="expense">Expenses</option>
+        </select>
+        
+
+        <h3>Transaction History</h3>
+        <ul id="transaction-list"></ul>
+    </div>
+
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
