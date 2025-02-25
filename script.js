@@ -1,4 +1,4 @@
-// Select elements
+
 const balanceEl = document.getElementById("balance");
 const incomeEl = document.getElementById("income-amount");
 const expenseEl = document.getElementById("expense-amount");
@@ -7,10 +7,8 @@ const descriptionInput = document.getElementById("description");
 const amountInput = document.getElementById("amount");
 const typeInput = document.getElementById("type");
 
-// Store transactions in an array
 let transactions = [];
 
-// Initialize Chart.js
 let chartCtx = document.getElementById("financeChart").getContext("2d");
 let financeChart = new Chart(chartCtx, {
     type: "pie",
@@ -23,13 +21,12 @@ let financeChart = new Chart(chartCtx, {
     }
 });
 
-// Function to update Chart Data
+
 function updateChart(income, expense) {
     financeChart.data.datasets[0].data = [income, expense];
     financeChart.update();
 }
 
-// Function to update UI
 function updateUI() {
     let income = 0, expense = 0, balance = 0;
     
@@ -54,11 +51,10 @@ function updateUI() {
     incomeEl.innerText = `₹${income}`;
     expenseEl.innerText = `₹${expense}`;
 
-    // Update the Chart
+    
     updateChart(income, expense);
 }
 
-// Function to add a transaction
 function addTransaction() {
     const description = descriptionInput.value;
     const amount = parseFloat(amountInput.value);
@@ -69,24 +65,20 @@ function addTransaction() {
         return;
     }
 
-    // Add transaction to array
+
     transactions.push({ description, amount, type });
 
-    // Clear input fields
     descriptionInput.value = "";
     amountInput.value = "";
 
-    // Update UI
     updateUI();
 }
 
-// Function to delete a transaction
 function deleteTransaction(index) {
     transactions.splice(index, 1);
     updateUI();
 }
 
-// Initial update
 updateUI();
 
 
@@ -94,12 +86,10 @@ updateUI();
 
 const darkModeToggle = document.getElementById("dark-mode-toggle");
 
-// Check for saved mode in localStorage
 if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
 }
 
-// Toggle Dark Mode on button click
 darkModeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
 
@@ -115,11 +105,10 @@ darkModeToggle.addEventListener("click", () => {
 
 const filterDropdown = document.getElementById("filter");
 
-// Function to update UI with Filtering
 function updateUI() {
     let income = 0, expense = 0, balance = 0;
     
-    transactionList.innerHTML = ""; // Clear list before updating
+    transactionList.innerHTML = ""; 
 
     transactions.forEach((transaction, index) => {
         if (transaction.type === "income") {
@@ -128,7 +117,6 @@ function updateUI() {
             expense += transaction.amount;
         }
 
-        // Create list item (Only show based on filter)
         if (filterDropdown.value === "all" || filterDropdown.value === transaction.type) {
             const li = document.createElement("li");
             li.innerHTML = `${transaction.description}: ₹${transaction.amount} 
@@ -144,6 +132,5 @@ function updateUI() {
     updateChart(income, expense);
 }
 
-// Add Event Listener for Filter Dropdown
 filterDropdown.addEventListener("change", updateUI);
 
